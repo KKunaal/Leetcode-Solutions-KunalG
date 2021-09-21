@@ -1,0 +1,28 @@
+# Problem 118 in leetcode
+
+import numpy as np
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        
+        arr = np.zeros((numRows+1,numRows+1),int)
+        
+        for i in range(numRows+1):
+            for j in range(i+1):
+                if i==0 or j == 0:
+                    arr[i][j] = 0
+                elif i==1 and j==1:
+                    arr[i][j] = 1
+                else:
+                    arr[i][j] = arr[i-1][j-1] + arr[i-1][j]
+        lst = []
+        
+        for i in range(len(arr)):
+            temp = []
+            for j in range(len(arr[0])):
+                if arr[i][j] != 0:
+                    temp.append(arr[i][j])
+            if len(temp) != 0:
+                lst.append(temp)
+            
+        print(lst)
+        return lst
