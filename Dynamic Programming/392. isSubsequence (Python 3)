@@ -1,0 +1,19 @@
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        
+        lst = [[0]*(len(t)+1) for i in range(len(s)+1)]
+        # print(lst)
+        
+        for i in range(len(s)+1):
+            for j in range(len(t)+1):
+                if i == 0:
+                    lst[i][j] = 1
+                elif j == 0:
+                    lst[i][j] = 0
+                elif t[j-1] == s[i-1]:
+                    lst[i][j] = lst[i-1][j-1]
+                else:
+                    lst[i][j] = lst[i][j-1]
+        
+        # print(lst)
+        return lst[-1][-1]
